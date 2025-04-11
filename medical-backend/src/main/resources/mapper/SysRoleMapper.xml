@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pokfulamroad.admintemplate.system.mapper.SysRoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.pokfulamroad.admintemplate.system.entity.domain.SysRole">
+            <id property="roleId" column="ROLE_ID" jdbcType="BIGINT"/>
+            <result property="roleName" column="ROLE_NAME" jdbcType="VARCHAR"/>
+            <result property="roleKey" column="ROLE_KEY" jdbcType="VARCHAR"/>
+            <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ROLE_ID,ROLE_NAME,ROLE_KEY,
+        CREATE_TIME
+    </sql>
+    <select id="selectSysrolePage" resultType="com.pokfulamroad.admintemplate.system.entity.SysRoleDto">
+        select * from sys_role
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pokfulamroad.admintemplate.system.mapper.SysMenuMapper">
+
+    <resultMap id="BaseResultMap" type="com.pokfulamroad.admintemplate.system.entity.domain.SysMenu">
+            <id property="menuId" column="MENU_ID" jdbcType="BIGINT"/>
+            <result property="menuName" column="MENU_NAME" jdbcType="VARCHAR"/>
+            <result property="menuType" column="MENU_TYPE" jdbcType="VARCHAR"/>
+            <result property="parentId" column="PARENT_ID" jdbcType="BIGINT"/>
+            <result property="orderNum" column="ORDER_NUM" jdbcType="INTEGER"/>
+            <result property="visible" column="VISIBLE" jdbcType="VARCHAR"/>
+            <result property="path" column="PATH" jdbcType="VARCHAR"/>
+            <result property="icon" column="ICON" jdbcType="VARCHAR"/>
+            <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        MENU_ID,MENU_NAME,MENU_TYPE,
+        PARENT_ID,ORDER_NUM,VISIBLE,
+        PATH,ICON,CREATE_TIME
+    </sql>
+</mapper>

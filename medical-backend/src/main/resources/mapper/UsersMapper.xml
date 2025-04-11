@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pokfulamroad.admintemplate.common.mapper.PortalUserMapper">
+
+
+    <sql id="Base_Query_SQL">
+        select *  from portal_user
+    </sql>
+
+    <select id="selectUsersPage" resultType="com.pokfulamroad.admintemplate.common.entity.PortalUserDto">
+        <include refid="Base_Query_SQL"/>
+        order by create_time desc
+    </select>
+    <select id="selectUsersList" resultType="com.pokfulamroad.admintemplate.common.entity.PortalUserDto">
+        <include refid="Base_Query_SQL"/>
+        order by create_time
+    </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pokfulamroad.admintemplate.business.mapper.DepartmentInfoMapper">
+
+
+    <sql id="Base_Query_SQL">
+        select * from department_info a
+        <where>
+            1 = 1
+
+
+
+
+        </where>
+
+    </sql>
+
+    <select id="selectDepartmentInfoPage"
+            resultType="com.pokfulamroad.admintemplate.business.entity.DepartmentInfoDto">
+        <include refid="Base_Query_SQL"/>
+        order by a.create_time desc
+    </select>
+    <select id="selectDepartmentInfoList"
+            resultType="com.pokfulamroad.admintemplate.business.entity.DepartmentInfoDto">
+        <include refid="Base_Query_SQL"/>
+        order by a.create_time desc
+    </select>
+</mapper>

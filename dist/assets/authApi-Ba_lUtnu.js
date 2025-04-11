@@ -1,0 +1,1 @@
+import{a as r}from"./request-sBhsa8yO.js";const s=e=>r({url:"/userAccount/login",method:"post",data:e}),o=e=>r({url:"/userAccount/register",method:"post",data:e}),u=()=>r({url:"/userAccount/me",method:"get"});export{u as a,o as b,s as u};

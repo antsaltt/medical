@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pokfulamroad.admintemplate.common.mapper.PostCommentMapper">
+
+
+    <select id="selectPostCommentPage" resultType="com.pokfulamroad.admintemplate.common.entity.PostCommentDto">
+        select pc.* , po.title as postTitle from post_comment pc
+        left join post po on pc.post_id = po.id
+        <where>
+            <if test="request.postId != null and request.postId != ''">
+                and po.id = #{request.postId}
+            </if>
+        </where>
+        order by pc.create_time desc
+    </select>
+    <select id="selectPostCommentList" resultType="com.pokfulamroad.admintemplate.common.entity.PostCommentDto">
+        select * from post_comment
+    </select>
+</mapper>

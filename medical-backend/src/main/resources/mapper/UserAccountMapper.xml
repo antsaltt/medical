@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pokfulamroad.admintemplate.business.mapper.UserAccountMapper">
+
+
+    <sql id="Base_Query_SQL">
+        select * from user_account a
+        <where>
+            1 = 1
+
+
+
+
+
+        </where>
+
+    </sql>
+
+    <select id="selectUserAccountPage"
+            resultType="com.pokfulamroad.admintemplate.business.entity.UserAccountDto">
+        <include refid="Base_Query_SQL"/>
+        order by a.create_time desc
+    </select>
+    <select id="selectUserAccountList"
+            resultType="com.pokfulamroad.admintemplate.business.entity.UserAccountDto">
+        <include refid="Base_Query_SQL"/>
+        order by a.create_time desc
+    </select>
+</mapper>
