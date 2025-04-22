@@ -1,7 +1,12 @@
 <script setup>
 
 import {ref} from 'vue';
+import {userLogout} from '@/api/authApi.js';
+import {showNotify} from 'vant';
+import {useRouter} from 'vue-router';
 
+const router = useRouter()
+// 用户信息
 const user = ref({
   account: 'admin',
   avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
@@ -41,7 +46,26 @@ const tools = ref([
 
 ])
 
-const onLogout = () => {}
+const onLogout = async () => {
+  try {
+    // 调用后端接口注销
+    await userLogout();
+
+    // 清除本地存储的用户信息
+    localStorage.removeItem('token');
+    localStorage.removeItem('USER_INFO');
+
+    // 提示用户退出成功
+    showNotify({ type: 'success', message: '退出登录成功' });
+
+    // 跳转到登录页面
+    router.replace('/login');
+  } catch (error) {
+    // 提示用户退出失败
+    showNotify({ type: 'danger', message: '退出登录失败，请重试' });
+    console.error('Logout failed:', error);
+  }
+};
 
 
 import mine1 from '@/assets/img/navi/navigator-icon-1.png'
