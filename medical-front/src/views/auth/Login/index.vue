@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {userLogin, userMe, userRegister} from '@/api/authApi.js';
 import {showNotify} from 'vant';
+import { useUserStore } from '@/stores/userStore.js';
 
 const form = ref({
   username:'',
@@ -24,18 +25,26 @@ const onSubmit  = async () => {
 }
 
 async function afterLogin(token) {
-  // 保存token
-  localStorage.setItem('TOKEN', token)
-  // 获取登录人信息
-  const loginUser = await userMe()
-  // 保存登录人信息到 localstorage 和 pinia
-  localStorage.setItem('USER_INFO', JSON.stringify(loginUser))
-  // 获取用户菜单并保存到localstorage
-  // 将用户推到首页
-  await router.replace('/home')
+  const userStore = useUserStore();
 
+  // 保存 token 到 localStorage
+  localStorage.setItem('TOKEN', token);
+  console.log(token)
+  // 获取用户信息
+  const loginUser = await userMe();
+  console.log("loginuser",loginUser)
+
+  // 保存用户信息到 localStorage 和 Pinia
+  localStorage.setItem('USER_INFO', JSON.stringify(loginUser));
+  userStore.setUserInfo(loginUser);
+  userStore.setToken(token);
+
+  // 提示用户登录成功
+  showNotify({ type: 'success', message: '登录成功' });
+
+  // 跳转到首页
+  await router.replace('/home');
 }
-
 
 // 密码的可见与不可见
 const isShow = ref(false)

@@ -4,23 +4,28 @@ import {ref} from 'vue';
 import {userLogout} from '@/api/authApi.js';
 import {showNotify} from 'vant';
 import {useRouter} from 'vue-router';
+import {useUserStore} from '@/stores/userStore.js';
 
-const router = useRouter()
-// 用户信息
-const user = ref({
-  account: 'admin',
-  avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-  collectionNumber: 10,
-  likeNumber: 20,
-  score: 100,
-  couponNumber: 5,
-  orderInfo: {
-    paidNumber: 10,
-    receivedNumber: 20,
-    shippedNumber: 30,
-    finishedNumber: 40
-  }
-})
+const router = useRouter();
+
+const userStore = useUserStore();
+const user = userStore.userInfo;
+
+// // 用户信息
+// const user = ref({
+//   account: 'admin',
+//   avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+//   collectionNumber: 10,
+//   likeNumber: 20,
+//   score: 100,
+//   couponNumber: 5,
+//   orderInfo: {
+//     paidNumber: 10,
+//     receivedNumber: 20,
+//     shippedNumber: 30,
+//     finishedNumber: 40
+//   }
+// })
 
 const tools = ref([
   {
