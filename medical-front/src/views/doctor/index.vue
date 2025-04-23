@@ -22,10 +22,10 @@ const hosList = ref([])
 const value1 = ref(0);
 const value2 = ref(0);
 const option1 = [
-  {text: '全部医院', value: 0},
+  {text: 'All hospitals', value: 0},
 ];
 const option2 = [
-  {text: '全部科室', value: 0},
+  {text: 'All departments', value: 0},
 ];
 
 async function loadData() {
@@ -68,8 +68,8 @@ watch(() => route.query.departmentId, (newVal) => {
 
   <div>
     <van-nav-bar
-        title="医生列表"
-        left-text="返回"
+        title="Doctor List"
+        left-text="back"
         left-arrow
         @click-left="() => router.push('/home')"
     />
@@ -97,7 +97,7 @@ watch(() => route.query.departmentId, (newVal) => {
           :hos-name="item.hosName"
           :avatar="item.avatar"
           v-for="item in doctorList"></doctor-preview>
-      <van-empty v-else image="error" description="暂无数据"/>
+      <van-empty v-else image="error" description="No Data"/>
     </div>
 
   </div>

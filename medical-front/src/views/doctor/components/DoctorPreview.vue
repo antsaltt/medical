@@ -27,8 +27,8 @@ defineProps(['name','title','department','hosName','avatar','id','rate'])
       </div>
       <div class="w-1/4 p-2.5 flex items-center justify-center">
         <div class="border text-gray-400 h-14 w-20 flex flex-col  items-center justify-center  border-orange-400">
-          <span class="text-orange-400">{{rate === -1 ? '暂无评分' : rate}}</span>
-          <span class="text-zinc-700 mt-1">好评指数</span>
+          <span class="text-orange-400">{{rate === -1 ? 'No rating yet' : rate}}</span>
+          <span class="text-zinc-700 mt-1">Positive Rating Index</span>
         </div>
       </div>
     </div>

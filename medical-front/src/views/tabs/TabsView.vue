@@ -18,10 +18,10 @@ watch(active, (newVal) => {
 
   <RouterView />
     <Tabbar v-model="active">
-        <TabbarItem name="home" icon-="home-o">首页</TabbarItem>
-        <TabbarItem name="myReg" icon-="home-o">我的挂号</TabbarItem>
-        <TabbarItem name="doc" icon-="bars">家庭档案</TabbarItem>
-        <TabbarItem name="me" icon-="contact">个人中心</TabbarItem>
+        <TabbarItem name="home" icon-="home-o">Home</TabbarItem>
+        <TabbarItem name="myReg" icon-="home-o">My Registration</TabbarItem>
+        <TabbarItem name="doc" icon-="bars">Family Record</TabbarItem>
+        <TabbarItem name="me" icon-="contact">Personal Center</TabbarItem>
     </Tabbar>
 
 </template>

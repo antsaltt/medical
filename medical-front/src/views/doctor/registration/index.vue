@@ -46,13 +46,13 @@ async function handleRegister() {
   }
 
   if (!params.value.timeQuantum) {
-    showNotify({type: 'danger', message: '请选择预约时间段'});
+    showNotify({type: 'danger', message: 'Please select a time slot'});
     return
   }
 
 
   if (!params.value.timeQuantum) {
-    showNotify({type: 'danger', message: '请选择预约时间段'});
+    showNotify({type: 'danger', message: 'Please select a time slot'});
     return
   }
 
@@ -60,8 +60,8 @@ async function handleRegister() {
   registerSave(params.value).then(() => {
 
     showDialog({
-      title: '提示',
-      message: '预约成功',
+      title: 'Notification',
+      message: 'Appointment booked successfully',
       theme: 'round-button',
     })
 
@@ -90,7 +90,7 @@ async function loadResume() {
           @click="() => {
           panelShow = false
           params.resumeId = item.id
-        showNotify({type: 'success', message: '选择成功'});
+        showNotify({type: 'success', message: 'Successful Choice'});
         }"
           :gender="item.gender"
           :id-card-no="item.idCardNo"
@@ -104,8 +104,8 @@ async function loadResume() {
 
 
   <van-nav-bar
-      title="挂号预约"
-      left-text="返回"
+      title="Appointment Registration"
+      left-text="back"
       left-arrow
       @click-left="() => router.back()"
   />
@@ -126,7 +126,7 @@ async function loadResume() {
       </div>
     </div>
     <div class="p-2 rounded bg-white mt-4 flex flex-col">
-      <div class="font-bold text-lg mt-4">选择挂号时间</div>
+      <div class="font-bold text-lg mt-4">Select Appointment Time</div>
       <div class="grid grid-cols-4 mt-2 grid-rows-4 gap-4">
         <div
             :class="[{'bg-zinc-200': current === index}, {'cursor-not-allowed': isItemDisabled(item)}]" @click="() =>{
@@ -140,11 +140,11 @@ async function loadResume() {
         </div>
       </div>
       <div class="mt-8">
-        <div class="mb-2">注意事项</div>
-        <ol class='flex  flex-col gap-3 text-gray-500'>
-          <li>1. 挂号平台提供次日起七天的预约服务，用户可预约中医院的大部分科室次日起至七天的就诊号源。</li>
-          <li>2. 因为医生工作繁忙，可能更改或者取消预约时间，届时会第一时间通知您，请留意短信通知。</li>
-          <li>3. 如果您在就诊当天不能前往医院取号就诊，请提前通过挂号平台取消预约，否则会因造成号源的浪费，请您谅解。</li>
+        <div class="mb-2">Notice</div>
+        <ol class='flex flex-col gap-3 text-gray-500'>
+          <li>1. The registration platform provides appointment services for seven days starting tomorrow. Users can book appointments for most departments of the hospital from tomorrow to seven days in advance.</li>
+          <li>2. Due to doctors' busy schedules, appointments may be rescheduled or canceled. You will be notified immediately via SMS if changes occur.</li>
+          <li>3. If you cannot attend your appointment on the scheduled day, please cancel it in advance through the platform to avoid wasting appointment slots. We appreciate your understanding.</li>
         </ol>
       </div>
     </div>

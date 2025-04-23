@@ -16,7 +16,7 @@ const router = useRouter()
 const onSubmit  = async () => {
 
   if (!agree.value) {
-    showNotify({ type: 'warning', message: '请勾选用户协议' });
+    showNotify({ type: 'warning', message: 'Please agree to the user agreement' });
     return
   }
 
@@ -40,7 +40,7 @@ async function afterLogin(token) {
   userStore.setToken(token);
 
   // 提示用户登录成功
-  showNotify({ type: 'success', message: '登录成功' });
+  showNotify({ type: 'success', message: 'Login Success' });
 
   // 跳转到首页
   await router.replace('/home');
@@ -60,9 +60,9 @@ const isShow = ref(false)
     </div>
     <!-- 头部 -->
     <div class="login-head">
-      <h3>密码登录</h3>
+      <h3>Password Login</h3>
       <a href="javascript:">
-        <span @click="() => router.push('/register')">注册</span>
+        <span @click="() => router.push('/register')">Register</span>
         <van-icon name="arrow"></van-icon>
       </a>
     </div>
@@ -71,9 +71,9 @@ const isShow = ref(false)
       <van-field
           v-model="form.username"
           name="username"
-          label="用户名"
-          placeholder="用户名"
-          :rules="[{ required: true, message: '请填写用户名' }]"
+          label="username"
+          placeholder="username"
+          :rules="[{ required: true, message: 'Please enter username' }]"
       ></van-field>
       <van-field
           v-model="form.password"
@@ -81,25 +81,25 @@ const isShow = ref(false)
           name="password"
           label="密码"
           placeholder="密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
+          :rules="[{ required: true, message: 'Please enter password' }]"
       >
 
       </van-field>
       <div class="cp-cell">
         <van-checkbox v-model="agree">
-          <span>我已同意</span>
-          <a href="javascript:;">用户协议</a>
+          <span>I agreed</span>
+          <a href="javascript:;">User Agreement</a>
           <span>及</span>
-          <a href="javascript:;">隐私条款</a>
+          <a href="javascript:;">Privacy Policy</a>
         </van-checkbox>
       </div>
       <div class="cp-cell">
         <van-button native-type="submit" block round type="primary">
-          登 录
+          Login
         </van-button>
       </div>
       <div class="cp-cell">
-        <a href="javascript:;">忘记密码？</a>
+        <a href="javascript:;">Forgot password? </a>
       </div>
     </van-form>
     <!-- 底部 -->

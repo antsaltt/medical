@@ -14,23 +14,23 @@ defineProps(['realName','idCardNo','num','phone','applyDate','departmentName','h
       <span class="text-lg font-bold ">{{realName}} <span class="text-gray-500">( {{idCardNo}} )</span></span>
     </div>
     <div>
-      <span class=" text-gray-400 mr-3">编号</span>
+      <span class=" text-gray-400 mr-3">Number</span>
       <span>{{num}}</span>
     </div>
     <div>
-      <span class="text-gray-400 mr-3">手机号码</span>
+      <span class="text-gray-400 mr-3">Phone number</span>
       <span>{{phone}}</span>
     </div>
     <div>
-      <span class="text-gray-400 mr-3">预约时间</span>
+      <span class="text-gray-400 mr-3">Appointment time</span>
       <span>{{applyDate}}</span>
     </div>
     <div>
-      <span class="text-gray-400 mr-3">科室</span>
+      <span class="text-gray-400 mr-3">Department</span>
       <span>{{departmentName}}</span>
     </div>
     <div>
-      <span class="text-gray-400 mr-3">医生</span>
+      <span class="text-gray-400 mr-3">Doctor</span>
       <span>{{hosName}}</span>
     </div>
     <van-divider :style="{margin:'10px'}" />

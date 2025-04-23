@@ -20,8 +20,8 @@ loadData()
 <template>
 
   <van-nav-bar
-      title="我的挂号"
-      left-text="返回"
+      title="My registration"
+      left-text="back"
       left-arrow
       @click-left="() => router.push('/home')"
   />

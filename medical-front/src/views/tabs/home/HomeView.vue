@@ -14,9 +14,9 @@ import {departmentListGet, postPageGet} from '@/api/businessApi.js';
 import middleShow from '@/assets/img/banner-2.jpg'
 
 const transformers = [
-  {imgUrl: navi1, label: '导诊问寻', desc: '回答患者问题'},
-  {imgUrl: navi2, label: '找医生', desc: '查找医院科室'},
-  {imgUrl: navi3, label: '线上挂号', desc: '在线预约挂号'},
+  {imgUrl: navi1, label: 'Guide and ask questions', desc: 'Answer patients' questions'},
+  {imgUrl: navi2, label: 'Find a doctor', desc: 'Find hospital departments'},
+  {imgUrl: navi3, label: 'Online registration', desc: 'Online appointment registration'},
 ]
 
 const router = useRouter()
@@ -80,7 +80,7 @@ loadData()
 
     <div class="bg-white mb-20">
       <van-tabs v-model:active="active">
-        <van-tab title="关注">
+        <van-tab title="Focus">
           <notice-card
               @goto="() => router.push({path:'/post/detail',query:{id:item.id}})"
               :hos-name="item.hosName"
@@ -88,7 +88,7 @@ loadData()
               :title="item.title"
               :doc-name="item.docName" :preview-content="item.previewContent" v-for="item in postList"></notice-card>
         </van-tab>
-        <van-tab title="推荐">
+        <van-tab title="Recommend">
           <notice-card
               @click="() => router.push({path:'/post/detail',query:{id:item.id}})"
               :hos-name="item.hosName"

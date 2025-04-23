@@ -22,11 +22,11 @@ const isShow = ref(false)
 const onSubmit  = async () => {
 
   if (form.value.password !== form.value.repeatPassword) {
-    showNotify({ type: 'danger', message: '两次密码不一致' });
+    showNotify({ type: 'danger', message: 'Passwords do not match' });
     return
   }
   await userRegister(form.value)
-  showNotify({ type: 'success', message: '注册成功' });
+  showNotify({ type: 'success', message: 'Registration successful' });
   await router.replace('/login')
 }
 
@@ -38,9 +38,9 @@ const onSubmit  = async () => {
 
     <!-- 头部 -->
     <div class="login-head">
-      <h3>用户注册</h3>
+      <h3>User registration</h3>
       <a href="javascript:;">
-       <span @click="() => router.push('/login')">登录</span>
+       <span @click="() => router.push('/login')">Login</span>
         <van-icon name="arrow"></van-icon>
       </a>
     </div>
@@ -49,32 +49,32 @@ const onSubmit  = async () => {
       <van-cell-group inset>
         <van-field
             v-model="form.username"
-            name="用户名"
-            label="用户名"
-            placeholder="用户名"
-            :rules="[{ required: true, message: '请填写用户名' }]"
+            name="username"
+            label="username"
+            placeholder="username"
+            :rules="[{ required: true, message: 'Please enter the username' }]"
         />
         <van-field
             v-model="form.password"
             type="password"
             name="password"
-            label="密码"
-            placeholder="密码"
-            :rules="[{ required: true, message: '请填写密码' }]"
+            label="password"
+            placeholder="password"
+            :rules="[{ required: true, message: 'Please enter the password' }]"
         />
         <van-field
             v-model="form.repeatPassword"
             type="password"
             name="repeatPassword"
-            label="密码"
-            placeholder="密码"
-            :rules="[{ required: true, message: '请重复密码' }]"
+            label="password"
+            placeholder="password"
+            :rules="[{ required: true, message: 'Please repeat the password' }]"
         />
       </van-cell-group>
 
       <div style="margin: 16px;">
         <van-button round block type="primary" native-type="submit">
-          提交
+          Submit
         </van-button>
       </div>
     </van-form>

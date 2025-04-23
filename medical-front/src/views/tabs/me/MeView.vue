@@ -29,23 +29,23 @@ const user = userStore.userInfo;
 
 const tools = ref([
   {
-    label:'我的挂号',
+    label:'My Registration'',
     path:'/myReg'
   },
   {
-    label:'我的问诊',
+    label:'My Consultation',
     path:''
   },
   {
-    label:'家庭档案',
+    label:'Family Record',
     path:''
   },
   {
-    label:'我的评价',
+    label:'My Comment',
     path:''
   },
   {
-    label:'官方客服',
+    label:'Official Service',
     path:''
   },
 
@@ -61,13 +61,13 @@ const onLogout = async () => {
     localStorage.removeItem('USER_INFO');
 
     // 提示用户退出成功
-    showNotify({ type: 'success', message: '退出登录成功' });
+    showNotify({ type: 'success', message: 'Logout successful' });
 
     // 跳转到登录页面
     router.replace('/login');
   } catch (error) {
     // 提示用户退出失败
-    showNotify({ type: 'danger', message: '退出登录失败，请重试' });
+    showNotify({ type: 'danger', message: 'Logout failed, please try again' });
     console.error('Logout failed:', error);
   }
 };
@@ -95,19 +95,19 @@ import CpIcon from '@/components/CpIcon.vue';
       <van-row>
         <van-col span="6">
           <p>{{ user.collectionNumber }}</p>
-          <p>收藏</p>
+          <p>favorites</p>
         </van-col>
         <van-col span="6">
           <p>{{ user.likeNumber }}</p>
-          <p>关注</p>
+          <p>focus</p>
         </van-col>
         <van-col span="6">
           <p>{{ user.score }}</p>
-          <p>积分</p>
+          <p>credit</p>
         </van-col>
         <van-col span="6">
           <p>{{ user.couponNumber }}</p>
-          <p>优惠券</p>
+          <p>coupon</p>
         </van-col>
       </van-row>
     </div>
@@ -115,24 +115,24 @@ import CpIcon from '@/components/CpIcon.vue';
     <div class="bg-white mb-4 flex   rounded p-4 justify-between">
       <div class="flex flex-col gap-2">
         <img class="w-14" :src="mine1" alt="">
-        <span class="text-zinc-600">实名登记</span>
+        <span class="text-zinc-600">Real name registration</span>
       </div>
       <div class="flex flex-col gap-2">
         <img class="w-14" :src="mine2" alt="">
-        <span class="text-zinc-600">我的医生</span>
+        <span class="text-zinc-600">My doctor</span>
       </div>
       <div class="flex flex-col gap-2">
         <img class="w-14" :src="mine3" alt="">
-        <span class="text-zinc-600">检查报告</span>
+        <span class="text-zinc-600">Inspection report</span>
       </div>
       <div class="flex flex-col gap-2">
         <img class="w-14" :src="mine4" alt="">
-        <span class="text-zinc-600">电子处方</span>
+        <span class="text-zinc-600">Electronic prescription</span>
       </div>
     </div>
 
     <div class="user-page-group">
-      <h3>快捷工具</h3>
+      <h3>Quick Tools</h3>
       <van-cell
           v-for="(item, i) in tools"
           :key="item.label"
@@ -145,7 +145,7 @@ import CpIcon from '@/components/CpIcon.vue';
       </van-cell>
     </div>
     <!-- 退出登录 -->
-    <a href="javascript:;" class="logout" @click="onLogout">退出登录</a>
+    <a href="javascript:;" class="logout" @click="onLogout">Logout</a>
   </div>
 </template>
 
