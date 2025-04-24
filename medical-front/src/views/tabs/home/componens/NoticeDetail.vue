@@ -35,7 +35,7 @@ watch(() => route.query.id, () => {
 
     <van-nav-bar
         :title="postOne.title"
-        left-text="返回"
+        left-text="Return"
         left-arrow
         @click-left="() => router.push('/home')"
     />
@@ -52,14 +52,14 @@ watch(() => route.query.id, () => {
       >
         <!--            {{ item.likeFlag === 1 ? '已关注' : '+ 关注' }}-->
         <van-icon name="plus" />
-        收藏
+        follow
       </van-button>
     </div>
     <div class="py-2 font-bold text-xl">
       {{postOne.title}}
     </div>
     <div class="my-2 text-sm text-gray-500">
-      发布时间：{{postOne.createTime}}
+      Post time：{{postOne.createTime}}
     </div>
 
     <div class="mt-2">

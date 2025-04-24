@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {userLogin, userMe, userRegister} from '@/api/authApi.js';
 import {showNotify} from 'vant';
+import { useUserStore } from '@/stores/userStore.js';
 
 const form = ref({
   username:'',
@@ -15,7 +16,7 @@ const router = useRouter()
 const onSubmit  = async () => {
 
   if (!agree.value) {
-    showNotify({ type: 'warning', message: '请勾选用户协议' });
+    showNotify({ type: 'warning', message: 'Please agree to the user agreement' });
     return
   }
 
@@ -24,18 +25,26 @@ const onSubmit  = async () => {
 }
 
 async function afterLogin(token) {
-  // 保存token
-  localStorage.setItem('TOKEN', token)
-  // 获取登录人信息
-  const loginUser = await userMe()
-  // 保存登录人信息到 localstorage 和 pinia
-  localStorage.setItem('USER_INFO', JSON.stringify(loginUser))
-  // 获取用户菜单并保存到localstorage
-  // 将用户推到首页
-  await router.replace('/home')
+  const userStore = useUserStore();
 
+  // 保存 token 到 localStorage
+  localStorage.setItem('TOKEN', token);
+  console.log(token)
+  // 获取用户信息
+  const loginUser = await userMe();
+  console.log("loginuser",loginUser)
+
+  // 保存用户信息到 localStorage 和 Pinia
+  localStorage.setItem('USER_INFO', JSON.stringify(loginUser));
+  userStore.setUserInfo(loginUser);
+  userStore.setToken(token);
+
+  // 提示用户登录成功
+  showNotify({ type: 'success', message: 'Login Success' });
+
+  // 跳转到首页
+  await router.replace('/home');
 }
-
 
 // 密码的可见与不可见
 const isShow = ref(false)
@@ -51,9 +60,9 @@ const isShow = ref(false)
     </div>
     <!-- 头部 -->
     <div class="login-head">
-      <h3>密码登录</h3>
+      <h3>Login</h3>
       <a href="javascript:">
-        <span @click="() => router.push('/register')">注册</span>
+        <span @click="() => router.push('/register')">Register</span>
         <van-icon name="arrow"></van-icon>
       </a>
     </div>
@@ -62,35 +71,35 @@ const isShow = ref(false)
       <van-field
           v-model="form.username"
           name="username"
-          label="用户名"
-          placeholder="用户名"
-          :rules="[{ required: true, message: '请填写用户名' }]"
+          label="username"
+          placeholder="username"
+          :rules="[{ required: true, message: 'Please enter username' }]"
       ></van-field>
       <van-field
           v-model="form.password"
           type="password"
           name="password"
-          label="密码"
-          placeholder="密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
+          label="password"
+          placeholder="password"
+          :rules="[{ required: true, message: 'Please enter password' }]"
       >
 
       </van-field>
       <div class="cp-cell">
         <van-checkbox v-model="agree">
-          <span>我已同意</span>
-          <a href="javascript:;">用户协议</a>
-          <span>及</span>
-          <a href="javascript:;">隐私条款</a>
+          <span>I agreed</span>
+          <a href="javascript:;">User Agreement</a>
+          <span>and</span>
+          <a href="javascript:;">Privacy Policy</a>
         </van-checkbox>
       </div>
       <div class="cp-cell">
         <van-button native-type="submit" block round type="primary">
-          登 录
+          Login
         </van-button>
       </div>
       <div class="cp-cell">
-        <a href="javascript:;">忘记密码？</a>
+        <a href="javascript:;">Forgot password? </a>
       </div>
     </van-form>
     <!-- 底部 -->
@@ -98,6 +107,20 @@ const isShow = ref(false)
 </template>
 
 <style lang="scss" scoped>
+.login-head{
+  display: flex;
+  padding: 30px 30px 50px;
+  justify-content: space-between;
+  align-items: flex-end;
+  line-height: 1;
+  h3 {
+    font-weight: normal;
+    font-size: 24px;
+  }
+  a {
+    font-size: 15px;
+  }
+}
 .login {
   &-page {
     padding-top: 46px;
@@ -136,6 +159,7 @@ const isShow = ref(false)
     height: 52px;
     line-height: 24px;
     padding: 14px 16px;
+    font-size: medium;
     box-sizing: border-box;
     display: flex;
     align-items: center;

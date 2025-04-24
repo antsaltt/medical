@@ -6,7 +6,7 @@ import {ref} from 'vue';
 const router = useRouter()
 
 const isChange = ref(false)
-import { idCardRules } from '@/utils/rules'
+import {studentIdRules} from '@/utils/rules'
 import {genderType} from '@/utils/commonDict.js';
 import {patientResumeAdd, patientResumeDelete, patientResumeEdit, patientResumeList} from '@/api/businessApi.js';
 import {showNotify} from 'vant';
@@ -44,7 +44,7 @@ function submit() {
 
 function addPatientResume() {
   patientResumeAdd(form.value).then(() => {
-    showNotify({ type: 'success', message: '添加成功' });
+    showNotify({ type: 'success', message: 'Add successful' });
     show.value = false
     loadData()
   })
@@ -52,7 +52,7 @@ function addPatientResume() {
 
 function removeResume() {
   patientResumeDelete(form.value.id).then(() => {
-    showNotify({ type: 'success', message: '删除成功' });
+    showNotify({ type: 'success', message: 'Delete successful' });
     show.value = false
     loadData()
   })
@@ -60,7 +60,7 @@ function removeResume() {
 
 function editResume() {
   patientResumeEdit(form.value).then(() => {
-    showNotify({ type: 'success', message: '编辑成功' });
+    showNotify({ type: 'success', message: 'Edit successful' });
     show.value = false
     loadData()
   })
@@ -76,8 +76,8 @@ loadData()
 <template>
 
   <van-nav-bar
-      :title="isChange ? '选择患者' : '家庭档案'"
-      left-text="返回"
+      :title="isChange ? 'Choose Patient' : 'Family Record'"
+      left-text="back"
       left-arrow
 
       @click-left="() => router.push({name:'myReg'})"
@@ -96,12 +96,12 @@ loadData()
             {{item.idCardNo}}
           </span>
           <span>{{ genderType[item.gender] }}</span>
-          <span>{{calculateAge(item.idCardNo)}} 岁</span>
+          <!-- <span>{{calculateAge(item.idCardNo)}} 岁</span> -->
         </div>
         <div class="icon" @click.stop="goEdit(item)">
           <van-icon name="setting-o" />
         </div>
-        <div class="tag" v-if="item.defaultFlag === 1">默认</div>
+        <div class="tag" v-if="item.defaultFlag === 1">default</div>
       </div>
       <div class="patient-add" v-if="list.length < 6" @click="() => {
         show = true
@@ -109,20 +109,20 @@ loadData()
         form  = {}
       }">
         <van-icon name="plus" />
-        <p>添加患者</p>
+        <p>Add Patient</p>
       </div>
-      <div class="patient-tip">最多可添加 6 人</div>
+      <div class="patient-tip">Up to 6 people can be added</div>
     </div>
     <!-- 底部按钮 -->
     <div class="patient-next" @click="next" v-if="isChange">
-      <van-button type="primary" round block>下一步</van-button>
+      <van-button type="primary" round block>next step</van-button>
     </div>
     <van-popup position="right" v-model:show="show">
       <van-nav-bar
           v-if="isEdit"
-          title="编辑"
-          left-text="返回"
-          right-text="删除"
+          title="edit"
+          left-text="back"
+          right-text="delete"
           left-arrow
           @click-left="() => {
             show = false
@@ -131,8 +131,8 @@ loadData()
       />
       <van-nav-bar
           v-else
-          title="添加"
-          left-text="返回"
+          title="add"
+          left-text="back"
           left-arrow
           @click-left="() => {
             show = false
@@ -143,25 +143,25 @@ loadData()
         <van-field
             v-model="form.realName"
             name="name"
-            label="真实姓名"
-            placeholder="请输入真实姓名"
-            :rules="[{ required: true, message: '请填写真实姓名' }]"
+            label="real name"
+            placeholder="Please enter your real name"
+            :rules="[{ required: true, message: 'Please enter your real name' }]"
         />
         <van-field
             v-model="form.idCardNo"
-            label="身份证号"
-            placeholder="请输入身份证号"
-            :rules="idCardRules"
+            label="student ID"
+            placeholder="Please enter ID card number"
+            :rules="studentIdRules"
         />
-        <van-field name="radio" label="性别">
+        <van-field name="radio" label="gender">
           <template #input>
             <van-radio-group v-model="form.gender" direction="horizontal">
-              <van-radio name="1">男</van-radio>
-              <van-radio name="2">女</van-radio>
+              <van-radio name="1">male</van-radio>
+              <van-radio name="2">female</van-radio>
             </van-radio-group>
           </template>
         </van-field>
-<!--        <van-field label="默认就诊人">-->
+<!--        <van-field label="Default Patient">-->
 <!--          <template #input>-->
 <!--            <van-checkbox v-model="form.defaultResume" :icon-size="18" round />-->
 <!--          </template>-->
@@ -169,7 +169,7 @@ loadData()
       </van-form>
      <div class="p-3">
        <van-button v-e @click="submit" round block type="primary" native-type="submit">
-         提交
+         submit
        </van-button>
      </div>
 

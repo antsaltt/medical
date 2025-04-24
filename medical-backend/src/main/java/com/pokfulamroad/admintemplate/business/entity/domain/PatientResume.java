@@ -29,7 +29,7 @@ public class PatientResume implements Serializable {
     private String realName;
 
     /**
-     * 身份证号码
+     * 身份证号改成 student ID
      */
     private String idCardNo;
 

@@ -23,3 +23,11 @@ export const userMe = () => {
         method: 'get',
     })
 }
+
+
+export const userLogout = () => {
+    return Request({
+        url: '/userAccount/logout',
+        method: 'get',
+    })
+}

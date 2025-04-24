@@ -1,47 +1,76 @@
 <script setup>
 
 import {ref} from 'vue';
+import {userLogout} from '@/api/authApi.js';
+import {showNotify} from 'vant';
+import {useRouter} from 'vue-router';
+import {useUserStore} from '@/stores/userStore.js';
 
-const user = ref({
-  account: 'admin',
-  avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
-  collectionNumber: 10,
-  likeNumber: 20,
-  score: 100,
-  couponNumber: 5,
-  orderInfo: {
-    paidNumber: 10,
-    receivedNumber: 20,
-    shippedNumber: 30,
-    finishedNumber: 40
-  }
-})
+const router = useRouter();
+
+const userStore = useUserStore();
+const user = userStore.userInfo;
+
+// // 用户信息
+// const user = ref({
+//   account: 'admin',
+//   avatar: 'https://img.yzcdn.cn/vant/cat.jpeg',
+//   collectionNumber: 10,
+//   likeNumber: 20,
+//   score: 100,
+//   couponNumber: 5,
+//   orderInfo: {
+//     paidNumber: 10,
+//     receivedNumber: 20,
+//     shippedNumber: 30,
+//     finishedNumber: 40
+//   }
+// })
 
 const tools = ref([
   {
-    label:'我的挂号',
+    label:'My Registration',
     path:'/myReg'
   },
   {
-    label:'我的问诊',
+    label:'My Consultation',
     path:''
   },
   {
-    label:'家庭档案',
+    label:'Family Record',
     path:''
   },
   {
-    label:'我的评价',
+    label:'My Comment',
     path:''
   },
   {
-    label:'官方客服',
+    label:'Official Service',
     path:''
   },
 
 ])
 
-const onLogout = () => {}
+const onLogout = async () => {
+  try {
+    // 调用后端接口注销
+    await userLogout();
+
+    // 清除本地存储的用户信息
+    localStorage.removeItem('token');
+    localStorage.removeItem('USER_INFO');
+
+    // 提示用户退出成功
+    showNotify({ type: 'success', message: 'Logout successful' });
+
+    // 跳转到登录页面
+    router.replace('/login');
+  } catch (error) {
+    // 提示用户退出失败
+    showNotify({ type: 'danger', message: 'Logout failed, please try again' });
+    console.error('Logout failed:', error);
+  }
+};
 
 
 import mine1 from '@/assets/img/navi/navigator-icon-1.png'
@@ -66,44 +95,44 @@ import CpIcon from '@/components/CpIcon.vue';
       <van-row>
         <van-col span="6">
           <p>{{ user.collectionNumber }}</p>
-          <p>收藏</p>
+          <p>favorites</p>
         </van-col>
         <van-col span="6">
           <p>{{ user.likeNumber }}</p>
-          <p>关注</p>
+          <p>focus</p>
         </van-col>
         <van-col span="6">
           <p>{{ user.score }}</p>
-          <p>积分</p>
+          <p>credit</p>
         </van-col>
         <van-col span="6">
           <p>{{ user.couponNumber }}</p>
-          <p>优惠券</p>
+          <p>coupon</p>
         </van-col>
       </van-row>
     </div>
 
-    <div class="bg-white mb-4 flex   rounded p-4 justify-between">
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine1" alt="">
-        <span class="text-zinc-600">实名登记</span>
+    <div class="bg-white mb-4 flex rounded p-4 justify-between">
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine1" alt="">
+        <span class="tool-text">Real name registration</span>
       </div>
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine2" alt="">
-        <span class="text-zinc-600">我的医生</span>
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine2" alt="">
+        <span class="tool-text">My doctor</span>
       </div>
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine3" alt="">
-        <span class="text-zinc-600">检查报告</span>
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine3" alt="">
+        <span class="tool-text">Inspection report</span>
       </div>
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine4" alt="">
-        <span class="text-zinc-600">电子处方</span>
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine4" alt="">
+        <span class="tool-text">Electronic prescription</span>
       </div>
     </div>
 
     <div class="user-page-group">
-      <h3>快捷工具</h3>
+      <h3>Quick Tools</h3>
       <van-cell
           v-for="(item, i) in tools"
           :key="item.label"
@@ -116,7 +145,7 @@ import CpIcon from '@/components/CpIcon.vue';
       </van-cell>
     </div>
     <!-- 退出登录 -->
-    <a href="javascript:;" class="logout" @click="onLogout">退出登录</a>
+    <a href="javascript:;" class="logout" @click="onLogout">Logout</a>
   </div>
 </template>
 
@@ -170,7 +199,7 @@ import CpIcon from '@/components/CpIcon.vue';
         }
         &:last-child {
           color:  #979797;
-          font-size: 12px;
+          font-size: 16px;
           padding-top: 4px;
         }
       }
@@ -225,6 +254,31 @@ import CpIcon from '@/components/CpIcon.vue';
     width: 100px;
     text-align: center;
     color: #EB5757;
+  }
+}
+
+.bg-white {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .tool-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1; // 确保每个工具项均匀分布
+
+    .tool-icon {
+      width: 60px; // 统一图标大小
+      height: 60px;
+      margin-bottom: 8px; // 图标与文字间距
+    }
+
+    .tool-text {
+      font-size: 14px; // 统一文字大小
+      color: #666; // 文字颜色
+    }
   }
 }
 </style>

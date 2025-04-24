@@ -66,4 +66,17 @@ public class UserAccountController {
         UserAccountDto userAccountOne = userAccountService.getUserAccountOne(id);
         return CommonResult.data(userAccountOne);
     }
+
+    @GetMapping("/logout")
+    public CommonResult<Void> logout(HttpSession httpSession) {
+        // 检查用户是否已登录
+        // if (httpSession.getAttribute("user") == null) {
+        //     return CommonResult.error("请先登录");
+        // }
+        // 清除当前用户的会话信息
+        httpSession.invalidate();
+
+        // 返回成功响应
+        return CommonResult.ok();
+    }
 }

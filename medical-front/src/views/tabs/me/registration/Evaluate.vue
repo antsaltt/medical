@@ -29,7 +29,7 @@ watchEffect(async () => {
   try {
     await loadData()
   } catch (error) {
-    showNotify({type: 'danger', message: '请求错误'});
+    showNotify({type: 'danger', message: 'Request Error'});
   }
 })
 
@@ -43,7 +43,7 @@ function submitRate() {
   params.value.doctorId = doctorOne.value.id
   userRateAdd(params.value).then(() => {
     router.push({name:'myReg'})
-    showNotify({type: 'danger', message: '评分成功'});
+    showNotify({type: 'danger', message: 'Rating successful'});
   })
 }
 
@@ -52,20 +52,20 @@ function submitRate() {
 <template>
 
   <van-nav-bar
-      title="服务打分"
-      left-text="返回"
+      title="Service Rating"
+      left-text="back"
       left-arrow
       @click-left="() => router.push({name:'myReg'})"
   />
 
   <van-notice-bar
       left-icon="volume-o"
-      text="请为医生的服务评价，来帮我们变的更好"></van-notice-bar>
+      text="Please rate the doctor's service to help us become better"></van-notice-bar>
 
   <div class="p-3 bg-gray-100 h-screen">
     <div class="p-2 bg-white rounded-xl ">
       <div class="p-1.5 mb-2 font-bold text-lg border-b border-gray-100">
-        请为医生的服务打分
+        Please rate the doctor's service
       </div>
       <div class="p-2 flex flex-col gap-2">
         <div class="flex gap-4   ">
@@ -85,7 +85,7 @@ function submitRate() {
               void-icon="star"
               void-color="#eee"
           />
-          <van-button @click="submitRate" plain hairline  type="primary">提交</van-button>
+          <van-button @click="submitRate" plain hairline  type="primary">submit</van-button>
         </div>
       </div>
     </div>

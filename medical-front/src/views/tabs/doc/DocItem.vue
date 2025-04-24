@@ -17,7 +17,7 @@ defineProps(['realName','idCardNo','gender'])
             {{idCardNo}}
           </span>
         <span>{{ genderType[gender] }}</span>
-        <span>{{calculateAge(idCardNo)}} 岁</span>
+        <!-- <span>{{calculateAge(idCardNo)}} Age</span> -->
       </div>
     </div>
   </div>
