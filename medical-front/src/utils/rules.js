@@ -31,5 +31,11 @@ const idCardRules = [
     message: '身份证号格式不正确'
   }
 ]
-
-export { mobileRules, passwordRules, codeRules, nameRules, idCardRules }
+const studentIdRules = [
+  { required: true, message: 'please input your student ID' },
+  {
+    pattern: /^[0-9]{10}$/,
+    message: 'student Id must be 10 digits'
+  }
+]
+export { mobileRules, passwordRules, codeRules, nameRules, idCardRules, studentIdRules}

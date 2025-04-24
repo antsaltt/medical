@@ -70,9 +70,9 @@ public class UserAccountController {
     @GetMapping("/logout")
     public CommonResult<Void> logout(HttpSession httpSession) {
         // 检查用户是否已登录
-        if (httpSession.getAttribute("user") == null) {
-            return CommonResult.error("请先登录");
-        }
+        // if (httpSession.getAttribute("user") == null) {
+        //     return CommonResult.error("请先登录");
+        // }
         // 清除当前用户的会话信息
         httpSession.invalidate();
 

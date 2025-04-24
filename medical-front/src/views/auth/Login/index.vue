@@ -60,7 +60,7 @@ const isShow = ref(false)
     </div>
     <!-- 头部 -->
     <div class="login-head">
-      <h3>Password Login</h3>
+      <h3>Login</h3>
       <a href="javascript:">
         <span @click="() => router.push('/register')">Register</span>
         <van-icon name="arrow"></van-icon>
@@ -79,8 +79,8 @@ const isShow = ref(false)
           v-model="form.password"
           type="password"
           name="password"
-          label="密码"
-          placeholder="密码"
+          label="password"
+          placeholder="password"
           :rules="[{ required: true, message: 'Please enter password' }]"
       >
 
@@ -89,7 +89,7 @@ const isShow = ref(false)
         <van-checkbox v-model="agree">
           <span>I agreed</span>
           <a href="javascript:;">User Agreement</a>
-          <span>及</span>
+          <span>and</span>
           <a href="javascript:;">Privacy Policy</a>
         </van-checkbox>
       </div>
@@ -107,6 +107,20 @@ const isShow = ref(false)
 </template>
 
 <style lang="scss" scoped>
+.login-head{
+  display: flex;
+  padding: 30px 30px 50px;
+  justify-content: space-between;
+  align-items: flex-end;
+  line-height: 1;
+  h3 {
+    font-weight: normal;
+    font-size: 24px;
+  }
+  a {
+    font-size: 15px;
+  }
+}
 .login {
   &-page {
     padding-top: 46px;
@@ -145,6 +159,7 @@ const isShow = ref(false)
     height: 52px;
     line-height: 24px;
     padding: 14px 16px;
+    font-size: medium;
     box-sizing: border-box;
     display: flex;
     align-items: center;

@@ -29,7 +29,7 @@ const user = userStore.userInfo;
 
 const tools = ref([
   {
-    label:'My Registration'',
+    label:'My Registration',
     path:'/myReg'
   },
   {
@@ -112,22 +112,22 @@ import CpIcon from '@/components/CpIcon.vue';
       </van-row>
     </div>
 
-    <div class="bg-white mb-4 flex   rounded p-4 justify-between">
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine1" alt="">
-        <span class="text-zinc-600">Real name registration</span>
+    <div class="bg-white mb-4 flex rounded p-4 justify-between">
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine1" alt="">
+        <span class="tool-text">Real name registration</span>
       </div>
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine2" alt="">
-        <span class="text-zinc-600">My doctor</span>
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine2" alt="">
+        <span class="tool-text">My doctor</span>
       </div>
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine3" alt="">
-        <span class="text-zinc-600">Inspection report</span>
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine3" alt="">
+        <span class="tool-text">Inspection report</span>
       </div>
-      <div class="flex flex-col gap-2">
-        <img class="w-14" :src="mine4" alt="">
-        <span class="text-zinc-600">Electronic prescription</span>
+      <div class="tool-item">
+        <img class="tool-icon" :src="mine4" alt="">
+        <span class="tool-text">Electronic prescription</span>
       </div>
     </div>
 
@@ -199,7 +199,7 @@ import CpIcon from '@/components/CpIcon.vue';
         }
         &:last-child {
           color:  #979797;
-          font-size: 12px;
+          font-size: 16px;
           padding-top: 4px;
         }
       }
@@ -254,6 +254,31 @@ import CpIcon from '@/components/CpIcon.vue';
     width: 100px;
     text-align: center;
     color: #EB5757;
+  }
+}
+
+.bg-white {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .tool-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1; // 确保每个工具项均匀分布
+
+    .tool-icon {
+      width: 60px; // 统一图标大小
+      height: 60px;
+      margin-bottom: 8px; // 图标与文字间距
+    }
+
+    .tool-text {
+      font-size: 14px; // 统一文字大小
+      color: #666; // 文字颜色
+    }
   }
 }
 </style>

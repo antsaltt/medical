@@ -6,7 +6,7 @@ import {ref} from 'vue';
 const router = useRouter()
 
 const isChange = ref(false)
-import { idCardRules } from '@/utils/rules'
+import {studentIdRules} from '@/utils/rules'
 import {genderType} from '@/utils/commonDict.js';
 import {patientResumeAdd, patientResumeDelete, patientResumeEdit, patientResumeList} from '@/api/businessApi.js';
 import {showNotify} from 'vant';
@@ -96,7 +96,7 @@ loadData()
             {{item.idCardNo}}
           </span>
           <span>{{ genderType[item.gender] }}</span>
-          <span>{{calculateAge(item.idCardNo)}} Age</span>
+          <!-- <span>{{calculateAge(item.idCardNo)}} 岁</span> -->
         </div>
         <div class="icon" @click.stop="goEdit(item)">
           <van-icon name="setting-o" />
@@ -149,9 +149,9 @@ loadData()
         />
         <van-field
             v-model="form.idCardNo"
-            label="ID number"
-            placeholder="Please enter your ID number"
-            :rules="idCardRules"
+            label="student ID"
+            placeholder="Please enter ID card number"
+            :rules="studentIdRules"
         />
         <van-field name="radio" label="gender">
           <template #input>

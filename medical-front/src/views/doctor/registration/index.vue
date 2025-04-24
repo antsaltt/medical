@@ -115,8 +115,9 @@ async function loadResume() {
         <img class="w-full  rounded-full" :src="doctorInfo.avatar" alt="">
       </div>
       <div class="flex flex-col">
-        <div><span class="text-lg">{{ doctorInfo.name }}</span> <span
-            class="text-gray-500 text-base">({{ doctorInfo.title }})</span></div>
+        <div><span class="text-lg">{{ doctorInfo.name }}</span> 
+          <span class="text-gray-500 text-base">({{ doctorInfo.title }})</span>
+        </div>
         <div class="text-base">
           {{ doctorInfo.hosName }}
         </div>
@@ -149,7 +150,7 @@ async function loadResume() {
       </div>
     </div>
     <div class="mt-10">
-      <van-button @click="handleRegister" type="primary" block>挂号</van-button>
+      <van-button @click="handleRegister" type="primary" block>Reserve</van-button>
     </div>
 
   </div>

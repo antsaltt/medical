@@ -21,8 +21,8 @@ export const menuType = {
 }
 
 export const genderType = {
-    '1': '男',
-    '2': '女'
+    '1': 'Male',
+    '2': 'Female', 
 }
 
 export const defaultContent = {

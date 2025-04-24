@@ -35,7 +35,7 @@ defineProps(['realName','idCardNo','num','phone','applyDate','departmentName','h
     </div>
     <van-divider :style="{margin:'10px'}" />
     <div class="flex justify-end ">
-      <van-button @click="() => router.push({path:'/doctorRate',query:{id:doctorId}})"   type="success" size="small">评价</van-button>
+      <van-button @click="() => router.push({path:'/doctorRate',query:{id:doctorId}})"   type="success" size="small">Rating</van-button>
     </div>
   </div>
 </template>

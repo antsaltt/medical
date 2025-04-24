@@ -19,7 +19,7 @@ watch(active, (newVal) => {
   <RouterView />
     <Tabbar v-model="active">
         <TabbarItem name="home" icon-="home-o">Home</TabbarItem>
-        <TabbarItem name="myReg" icon-="home-o">My Registration</TabbarItem>
+        <TabbarItem name="myReg" icon-="home-o">Registration</TabbarItem>
         <TabbarItem name="doc" icon-="bars">Family Record</TabbarItem>
         <TabbarItem name="me" icon-="contact">Personal Center</TabbarItem>
     </Tabbar>

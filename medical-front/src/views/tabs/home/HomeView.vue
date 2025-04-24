@@ -5,18 +5,18 @@ import navi1 from '@/assets/img/navi/navigator-icon-1.png'
 import navi2 from '@/assets/img/navi/navigator-icon-2.png'
 import navi3 from '@/assets/img/navi/navigator-icon-3.png'
 import {useRouter} from 'vue-router';
-import banner2 from '@/assets/img/homeBanner/banner-3.jpg'
-import banner5 from '@/assets/img/homeBanner/banner-6.jpg'
-import banner6 from '@/assets/img/homeBanner/banner-7.jpg'
+import banner2 from '@/assets/img/homeBanner/banner3.png'
+import banner5 from '@/assets/img/homeBanner/banner1.png'
+import banner6 from '@/assets/img/homeBanner/banner2.png'
 import {ref} from 'vue';
 import NoticeCard from '@/views/tabs/home/componens/NoticeCard.vue';
 import {departmentListGet, postPageGet} from '@/api/businessApi.js';
 import middleShow from '@/assets/img/banner-2.jpg'
 
 const transformers = [
-  {imgUrl: navi1, label: 'Guide and ask questions', desc: 'Answer patients' questions'},
+  {imgUrl: navi1, label: 'Guide', desc: 'Answer patients questions'},
   {imgUrl: navi2, label: 'Find a doctor', desc: 'Find hospital departments'},
-  {imgUrl: navi3, label: 'Online registration', desc: 'Online appointment registration'},
+  {imgUrl: navi3, label: 'Registration', desc: 'Online appointment registration'},
 ]
 
 const router = useRouter()
@@ -60,7 +60,8 @@ loadData()
         <img class="w-16" :src="v.imgUrl" alt="">
         <div class="flex flex-col items-center justify-center    mt-2">
           <div class="font-bold">{{ v.label }}</div>
-          <div class="text-sm  mt-1 text-gray-500">{{ v.desc }}</div>
+          <div class="text-desc">{{ v.desc }}</div>
+          <!-- <div class="text-sm  mt-1 text-gray-500">{{ v.desc }}</div> -->
         </div>
       </div>
     </div>
@@ -71,16 +72,16 @@ loadData()
           <div @click="() => router.push({path:'/doctorList',query:{departmentId:item.id}})"
                v-for="item in departmentList" class="flex flex-col items-center justify-center">
             <img class="w-12" :src="item.icon" alt="">
-            <span>{{ item.name }}</span>
+            <span class="depart-name">{{ item.name }}</span>
           </div>
         </div>
-        <img class="mt-2" :src="middleShow" alt="">
+        <!-- <img class="mt-2" :src="middleShow" alt=""> -->
       </div>
     </div>
 
     <div class="bg-white mb-20">
       <van-tabs v-model:active="active">
-        <van-tab title="Focus">
+        <van-tab title="Highlights">
           <notice-card
               @goto="() => router.push({path:'/post/detail',query:{id:item.id}})"
               :hos-name="item.hosName"
@@ -88,14 +89,14 @@ loadData()
               :title="item.title"
               :doc-name="item.docName" :preview-content="item.previewContent" v-for="item in postList"></notice-card>
         </van-tab>
-        <van-tab title="Recommend">
+        <!-- <van-tab title="Recommend">
           <notice-card
               @click="() => router.push({path:'/post/detail',query:{id:item.id}})"
               :hos-name="item.hosName"
               :avatar="item.avatar"
               :title="item.title"
               :doc-name="item.docName" :preview-content="item.previewContent" v-for="item in postList"></notice-card>
-        </van-tab>
+        </van-tab> -->
       </van-tabs>
 
     </div>
@@ -104,7 +105,7 @@ loadData()
 
 <style lang="scss" scoped>
 .home-page {
-  font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f7f7f7;
   padding-bottom: 10px;
 
@@ -120,7 +121,10 @@ loadData()
       text-align: center;
 
       img {
-        width: 48px
+        // width: 60px
+        max-width: 100%; /* 确保图标不会超出容器宽度 */
+        max-height: 64px; /* 限制图标的最大高度 */
+        object-fit: contain; /* 保持图标比例 */
       }
     }
 
@@ -152,6 +156,18 @@ loadData()
   display: flex;
 }
 
+.text-desc {
+  font-size: 14px; /* 设置字体大小 */
+  text-align: center; /* 居中对齐 */
+  color: #555; /* 可选：设置字体颜色 */
+}
+
+.depart-name {
+  font-size: 14px; /* 设置字体大小 */
+  text-align: center; /* 居中对齐 */
+  color: black; /* 可选：设置字体颜色 */
+  margin-top: 5px;
+}
 
 </style>
 

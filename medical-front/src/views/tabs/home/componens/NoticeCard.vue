@@ -40,7 +40,7 @@ function follow(item) {
           >
             <!--            {{ item.likeFlag === 1 ? '已关注' : '+ 关注' }}-->
             <van-icon name="plus" />
-            关注
+            follow
           </van-button>
           <!--          <span class="border p-1.5 cursor-pointer rounded-2xl px-2 text-emerald-400 text-sm border-emerald-400">-->
           <!--            <van-icon name="plus" />-->
