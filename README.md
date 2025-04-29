@@ -1,12 +1,3 @@
-# 文件说明
-
-dist文件夹-前端静态文件
-
-medical-2.7.10-后端jar文件
-
-medical-ui-前端源代码
-
-medical-backend-后端源代码
 
 # 运行环境
 
