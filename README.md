@@ -64,7 +64,7 @@ spring:
 
   ```
   mvn clean package
-  java -jar target/your-project-name-0.0.1-SNAPSHOT.jar
+  java -jar target/medical-2.7.10.jar
   ```
 
 Open in a browser: http://localhost:5173/login
