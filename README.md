@@ -1,23 +1,70 @@
+# Environment
 
-# 运行环境
+- Node.js
+- JDK17
+- MySQL (8.0 and above)
+- Redis (2.6 and above)
+- Maven
 
-Maven 3.9.6
+# Frontend
 
-JDK17
+In command prompt, enter:
 
-Spring Boot 2.7.10
+```powershell
+npm install
+npm run dev
+```
 
-MySQL 8.0.33
+# Backend
 
-Redis 2.6.12
+Configure MySQL and Redis connection in application.yaml:
 
-# 其他说明
+```yaml
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/medical?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true
+    username: yourusername
+    password: yourpassword
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+```
 
-sql文件只适用于MySQL8.0及以上版本
+- ### **Method 1: Using IDEA GUI (Recommended)**
 
-如果使用MySQL5.7，需要替换编码方式为utf8
+  1. **Ensure project is properly loaded**:
+     - Verify Maven dependencies are downloaded (click refresh icon in right toolbar)
+  2. **Locate main class**:
+     - Find the class annotated with `@SpringBootApplication` (`AdminTemplateApplication.java`)
+  3. **Click to run**:
+     - Click the green arrow ▶️ next to the class → Select `Run 'AdminTemplateApplication'`
 
-前端端口号5173
+- ### **Method 2: Via Maven Command**
 
-后端端口号9339
+  To run manually in IDEA's terminal:
 
+  ```shell
+  # Navigate to project root (folder containing pom.xml)
+  cd /path/to/your-project
+  
+  # Start with Maven 
+  mvn spring-boot:run
+  ```
+
+- ### **Method 3: Run Packaged JAR**
+
+  Build first then run:
+
+  ```
+  mvn clean package
+  java -jar target/your-project-name-0.0.1-SNAPSHOT.jar
+  ```
+
+Open in a browser: http://localhost:5173/login
